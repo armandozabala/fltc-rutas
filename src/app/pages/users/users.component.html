@@ -1,0 +1,88 @@
+
+  <div class="card-header">
+      <i class="fas fa-table mr-1"></i>
+      Users
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="mt-1 mb-1 ml-2" style="width: 250px;">
+        <!-- <input class="form-control" placeholder="Ruta" name="ruta" type="text" [(ngModel)]="ruta"/> --->
+        <select class="form-control" [(ngModel)]="ruta">
+            <option value="">Seleccione Ruta</option>
+            <option value="0">Todas Las Rutas</option>
+            <option *ngFor="let rut of rutas" [value]="rut.id_ruta">{{rut.ruta}}</option>
+        </select>
+
+      </div>
+
+      <div class="button_search">
+
+        <button class="btn btn-success" (click)="searchAll()"> Buscar </button>
+
+
+      </div>
+
+      <div class="button_search">
+        <select class="form-control"  #t (change)="onChange(t.value)">
+          <option value="">Tamaño</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+      </select>
+      </div>
+
+      <!-- <div>
+        <input class="form-control" placeholder="Filter" name="nombres" type="text" [(ngModel)]="nombres"/>
+      </div> -->
+    </div>
+
+
+      <div class="table-responsive" style="margin-top: 15px;">
+
+
+
+          <table class="table table-bordered" style="font-size: 12px;"  width="100%" cellspacing="0">
+              <thead>
+                      <tr>
+
+                      <th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
+                      <th (click)="sort('firstname')">Id &nbsp; <i class="fa fa-sort"></i> </th>
+                      <th (click)="sort('firstname')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
+                      <th (click)="sort('firstname')">Firstname &nbsp; <i class="fa fa-sort"></i> </th>
+                      <th (click)="sort('lastname')">Lastname &nbsp; <i class="fa  fa-sort"></i></th>
+                      <th (click)="sort('email')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
+                      <th (click)="sort('email')">Email &nbsp; <i class="fa fa-sort"></i></th>
+                      <th (click)="sort('email')">Ruta &nbsp; <i class="fa fa-sort"></i></th>
+                      <th>Orden &nbsp; <i class="fa fa-sort"></i></th>
+
+                      <th>Opcion</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+
+                  <tr *ngFor="let item of clientes.data | orderBy: key : reverse  | paginate: config |filter: nombres let i=index">
+
+                       <td><input type="checkbox" (change)="checkValue(item)" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
+                       <td>{{item.id_cliente}}</td>
+                       <td>{{item.razon_social}}</td>
+                       <td>{{item.nombres}}</td>
+                      <td>{{item.apellidos}}</td>
+                      <td>{{item.direccion}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.ruta}}</td>
+                      <td  ><input type="text"style="width: 30px;" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 15px; font-size: 15px;" class="fa fa-save" ></i> </span> </td>
+                      <td> <button class="btn btn-primary" (click)="editUser(item)"> Editar </button>
+                        <button class="btn btn-danger ml-1" (click)="deleteUser(item)"> Borrar </button>
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+          <div style="text-align: center;">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+
+      </div>
+  </div>
