@@ -1,15 +1,15 @@
-import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from 'src/app/service/customers.service';
+import { OrdenesService } from 'src/app/service/ordenes.service';
 import swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-customersnoroute',
+  templateUrl: './customersnoroute.component.html',
+  styleUrls: ['./customersnoroute.component.css']
 })
-export class UsersComponent implements OnInit {
+export class CustomersnorouteComponent implements OnInit {
 
   p: number = 1;
   config:any;
@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
   rutas:any = [];
 
 
-  constructor(private customerService: CustomersService) { }
+  constructor(private customerService: CustomersService, private ordenesService: OrdenesService) { }
 
 
 
@@ -55,6 +55,7 @@ export class UsersComponent implements OnInit {
 
     })
 
+    this.searchAll();
 
 
   }
@@ -62,21 +63,14 @@ export class UsersComponent implements OnInit {
   searchAll(){
 
 
-    if(this.ruta != ''){
+      this.customerService.getOrdenesSinRutas().subscribe(res => {
 
-      this.customerService.getClientesRutas(this.ruta).subscribe(res => {
-
-        console.log(res);
 
         this.clientes.data = res;
 
       });
 
-    }else{
 
-       swal.fire('Error','Seleccione una ruta','error');
-
-    }
 
 
   }
@@ -121,26 +115,25 @@ export class UsersComponent implements OnInit {
 		return this.clientes.data.every(p => p.checked);
   }
 
-  saveOrden(item){
-
-
-     this.customerService.updateOrder(item).subscribe(res => {
-         console.log(res);
-         swal.fire('Update','Ruta actualizada','info');
-         this.searchAll();
-     })
-  }
 
   onOptionsSelected(item){
 
-    this.customerService.updateRuta(item).subscribe(res => {
-      console.log(res);
-      swal.fire('Update','Orden actualizada','info');
-      this.searchAll();
+      this.customerService.updateRuta(item).subscribe(res => {
+        console.log(res);
+        swal.fire('Update','Orden actualizada','info');
+        this.ngOnInit();
+      })
+
+  }
+
+
+  saveOrden(item){
+
+    this.customerService.updateOrder(item).subscribe(res => {
+        console.log(res);
+        swal.fire('Update','Orden actualizada','info');
+        this.ngOnInit();
     })
-
+ }
 }
 
-
-
-}

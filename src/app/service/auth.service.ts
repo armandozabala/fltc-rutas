@@ -35,6 +35,9 @@ export class AuthService {
   }
 
   isAuthenticated(){
+
+    if(sessionStorage.getItem('token')!=null){
+
       let payload = this.obtenerDatosToken(sessionStorage.getItem('token'));
 
       if(payload.email && payload.email.length > 0){
@@ -42,6 +45,8 @@ export class AuthService {
       }
 
       return false;
+    }
+
   }
 
   public get usuario(){

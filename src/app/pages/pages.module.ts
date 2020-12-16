@@ -13,7 +13,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OrdenesComponent } from './ordenes/ordenes.component';
-
+import { BlockUIModule } from 'ng-block-ui';
+import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { OrdenesComponent } from './ordenes/ordenes.component';
     PagesComponent,
     UsersComponent,
     CustomersComponent,
-    OrdenesComponent
+    OrdenesComponent,
+    CustomersnorouteComponent
   ],
   exports:[
     DashboardComponent,
@@ -33,6 +35,7 @@ import { OrdenesComponent } from './ordenes/ordenes.component';
     PagesComponent
   ],
   imports: [
+
     CommonModule,
     SharedModule,
     ReactiveFormsModule,

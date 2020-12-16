@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
-
+import { BlockUIModule } from 'ng-block-ui';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
   ],
   imports: [
+
     CommonModule,
     AppRoutingModule,
     FormsModule

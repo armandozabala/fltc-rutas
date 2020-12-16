@@ -1,3 +1,4 @@
+import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
 import { OrdenesComponent } from './ordenes/ordenes.component';
 import { AuthGuard } from './../guards/auth.guard';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'graficas', component: GraficasComponent},
       { path: 'users', component: UsersComponent},
       { path: 'ordenes', component: OrdenesComponent},
+      { path: 'customersnoroutes', component: CustomersnorouteComponent},
     ]
   }
 ];

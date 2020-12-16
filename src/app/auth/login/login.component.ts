@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Users } from 'src/app/model/users';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: Users;
+  @BlockUI() blockUI: NgBlockUI;
 
   constructor(private authService: AuthService, private router: Router) {
       this.user = new Users();
   }
 
   ngOnInit(): void {
-      console.log(this.authService.usuario);
       if(this.authService.isAuthenticated()){
           swal.fire('Login','Hola '+this.authService.usuario.nombre+" ya esta authenticado",'info');
           this.router.navigate(['/dashboard']);
@@ -34,6 +35,8 @@ export class LoginComponent implements OnInit {
          return;
       }
 
+      this.blockUI.start('Loading...'); // Start blocking
+
       this.authService.login(this.user).subscribe((res:any) => {
 
 
@@ -44,6 +47,7 @@ export class LoginComponent implements OnInit {
 
           this.router.navigate(['/dashboard']);
 
+          this.blockUI.stop();
           //swal.fire('Login','Hola '+usuario.nombre,'success');
 
       }, err =>{
