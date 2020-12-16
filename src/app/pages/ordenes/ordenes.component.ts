@@ -21,6 +21,7 @@ export class OrdenesComponent implements OnInit {
   ruta = "";
 
   rutas:any = [];
+  checkedList:any;
 
 
   constructor(private customerService: CustomersService, private ordenesService: OrdenesService) { }
@@ -60,12 +61,12 @@ export class OrdenesComponent implements OnInit {
 
   searchAll(){
 
+    this.checkedList = [];
 
     if(this.ruta != ''){
 
       this.ordenesService.getOrdenesToday(this.ruta).subscribe(res => {
 
-        console.log(res);
 
         this.clientes.data = res;
 
@@ -108,9 +109,16 @@ export class OrdenesComponent implements OnInit {
   }
 
 
-  checkValue(item){
-      console.log(item);
+
+
+  checkValue(){
+    this.checkedList = [];
+    for (var i = 0; i < this.clientes.data.length; i++) {
+      if(this.clientes.data[i].checked)
+       this.checkedList.push(this.clientes.data[i]);
+    }
   }
+
 
   checkAllCheckBox(ev) {
 		this.clientes.data.forEach(x => x.checked = ev.target.checked)
@@ -118,6 +126,37 @@ export class OrdenesComponent implements OnInit {
 
 	isAllCheckBoxChecked() {
 		return this.clientes.data.every(p => p.checked);
+  }
+
+
+
+  showAllSelected(){
+
+
+
+        if(this.isAllCheckBoxChecked()){
+
+              if(this.clientes.data.length == 0){
+                swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+              }else{
+                console.log(this.clientes.data);
+
+                this.ordenesService.getOrdenesExcel(this.clientes.data);
+              }
+
+
+        }else{
+            if(this.checkedList == undefined || this.checkedList.length == 0 ){
+              swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+            }else{
+              console.log(this.checkedList);
+
+              this.ordenesService.getOrdenesExcel(this.checkedList);
+
+            }
+
+        }
+
   }
 
   saveOrden(item){

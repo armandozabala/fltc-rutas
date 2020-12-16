@@ -17,7 +17,7 @@
 
     <div class="button_search">
 
-      <button class="btn btn-success" (click)="searchAll()"> Buscar </button>
+      <button class="btn btn-primary" (click)="searchAll()"> Buscar </button>
 
 
     </div>
@@ -30,6 +30,13 @@
         <option value="20">20</option>
         <option value="50">50</option>
     </select>
+    </div>
+
+    <div class="button_search">
+
+      <button class="btn btn-success" (click)="showAllSelected()"> Generar Excel </button>
+
+
     </div>
 
     <!-- <div>
@@ -68,7 +75,7 @@
 
                 <tr *ngFor="let item of clientes.data | orderBy: key : reverse  | paginate: config |filter: nombres let i=index">
 
-                     <td><input type="checkbox" (change)="checkValue(item)" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
+                     <td><input type="checkbox" (change)="checkValue()" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
                      <td>{{item.id_cliente}}</td>
                      <td>{{item.razon_social}}</td>
                      <td>{{item.nombres}}</td>
