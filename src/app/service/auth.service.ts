@@ -25,8 +25,6 @@ export class AuthService {
 
   private isNotAutorizado(e){
 
-
-
     if(e.status == 401 || e.status == 403){
        this.router.navigate(['/login']);
        return true;
@@ -84,8 +82,6 @@ export class AuthService {
   guardarUsuarios(accessToken: string){
 
       let datos = JSON.parse(atob(accessToken.split(".")[1]));
-
-      console.log(datos);
 
       this._usuario = new Users();
 

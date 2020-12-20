@@ -41,10 +41,8 @@
                     <th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
                     <th (click)="sort('firstname')">Id &nbsp; <i class="fa fa-sort"></i> </th>
                     <th (click)="sort('firstname')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
-                    <th (click)="sort('firstname')">Firstname &nbsp; <i class="fa fa-sort"></i> </th>
-                    <th (click)="sort('lastname')">Lastname &nbsp; <i class="fa  fa-sort"></i></th>
+                    <th (click)="sort('firstname')">Establecimiento &nbsp; <i class="fa fa-sort"></i> </th>
                     <th (click)="sort('email')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
-                    <th (click)="sort('email')">Email &nbsp; <i class="fa fa-sort"></i></th>
                     <th (click)="sort('email')">Ruta &nbsp; <i class="fa fa-sort"></i></th>
                     <th>Orden &nbsp; <i class="fa fa-sort"></i></th>
 
@@ -59,10 +57,8 @@
                      <td><input type="checkbox" (change)="checkValue(item)" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
                      <td>{{item.id_cliente}}</td>
                      <td>{{item.razon_social}}</td>
-                     <td>{{item.nombres}}</td>
-                    <td>{{item.apellidos}}</td>
+                     <td>{{item.establecimiento}}</td>
                     <td>{{item.direccion}}</td>
-                    <td>{{item.email}}</td>
                     <td>
                       <select  class="form-control" [(ngModel)]="item.id_ruta"
                       #mySelect

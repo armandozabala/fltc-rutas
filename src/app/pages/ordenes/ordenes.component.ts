@@ -51,8 +51,6 @@ export class OrdenesComponent implements OnInit {
 
         this.rutas = res;
 
-        console.log(this.rutas);
-
     })
 
 

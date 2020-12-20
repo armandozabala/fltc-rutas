@@ -32,10 +32,6 @@ export class OrdenesService {
 
   getOrdenesExcel(row:any){
 
-    /*console.log(row);
-    const formData = new FormData();
-    formData.append('rows',  row);*/
-
     let body = {
              row
     }
@@ -52,22 +48,7 @@ export class OrdenesService {
       anchor.click();
 
     });
-    /*const headers = new HttpHeaders();
 
-    const formData = new FormData();
-    formData.append('rows',  row);
-
-    this.http.post(this.urlEndPoint+'/downloadexcel',formData,{headers, responseType: 'blob' as 'json'}).subscribe((response:any) =>{
-
-      const blob = new Blob([response],  { type: 'application/vnd.ms-excel;charset=utf-8' }); // you can change the type
-      const url= window.URL.createObjectURL(blob);
-      var anchor = document.createElement("a");
-      anchor.download = "Ordenes_"+new Date().getTime()+".xlsx";
-      anchor.href = url;
-      anchor.click();
-      //window.open(url);
-
-    })*/
   }
 
 

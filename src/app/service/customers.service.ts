@@ -41,11 +41,9 @@ export class CustomersService {
 
   updateOrder(rows:any){
 
-
     const formData = new FormData();
     formData.append('id_cliente',  rows.id_cliente);
     formData.append('orden', rows.orden);
-
 
     return this.http.post(this.urlEndPoint+'/updateorden', formData);
   }
@@ -53,19 +51,32 @@ export class CustomersService {
 
   updateRuta(rows:any){
 
-
     const formData = new FormData();
     formData.append('id_cliente',  rows.id_cliente);
     formData.append('id_ruta', rows.id_ruta);
 
-
     return this.http.post(this.urlEndPoint+'/updateruta', formData);
+
   }
 
 
   getOrdenesSinRutas(){
 
     return this.http.post(this.urlEndPoint+'/customersnoroutes','').pipe(
+        catchError(e => {
+            return throwError(e);
+        })
+    );
+
+  }
+
+
+  deleteCustomer(id_cliente:any){
+
+    const formData = new FormData();
+    formData.append('id_cliente', id_cliente);
+
+    return this.http.post(this.urlEndPoint+'/deletecustomer', formData).pipe(
         catchError(e => {
             return throwError(e);
         })

@@ -51,7 +51,7 @@ export class CustomersnorouteComponent implements OnInit {
 
         this.rutas = res;
 
-        console.log(this.rutas);
+        //console.log(this.rutas);
 
     })
 

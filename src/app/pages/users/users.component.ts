@@ -51,8 +51,6 @@ export class UsersComponent implements OnInit {
 
         this.rutas = res;
 
-        console.log(this.rutas);
-
     })
 
 
@@ -65,8 +63,6 @@ export class UsersComponent implements OnInit {
     if(this.ruta != ''){
 
       this.customerService.getClientesRutas(this.ruta).subscribe(res => {
-
-        console.log(res);
 
         this.clientes.data = res;
 
@@ -86,6 +82,7 @@ export class UsersComponent implements OnInit {
   }
 
   sort(key){
+
     this.key = key;
     this.reverse = ! this.reverse;
   }
@@ -105,7 +102,40 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(item:any){
-    console.log(item);
+
+    swal.fire({
+      title: 'Esta seguro en borrar?',
+      text: "Esta acción es no se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+          console.log(item.id_cliente);
+
+        this.customerService.deleteCustomer(item.id_cliente).subscribe(res => {
+
+          console.log(res);
+
+          swal.fire(
+            'Borrado!',
+            'Cliente borrado satisfactoriamente.',
+            'success'
+          );
+
+          this.searchAll();
+
+        });
+
+
+
+      }
+    })
+
+
   }
 
 
@@ -126,7 +156,7 @@ export class UsersComponent implements OnInit {
 
      this.customerService.updateOrder(item).subscribe(res => {
          console.log(res);
-         swal.fire('Update','Ruta actualizada','info');
+         //swal.fire('Update','Ruta actualizada','info');
          this.searchAll();
      })
   }
