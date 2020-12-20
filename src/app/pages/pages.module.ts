@@ -15,6 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OrdenesComponent } from './ordenes/ordenes.component';
 import { BlockUIModule } from 'ng-block-ui';
 import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
+import { LoadcustomersComponent } from './loadcustomers/loadcustomers.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.c
     UsersComponent,
     CustomersComponent,
     OrdenesComponent,
-    CustomersnorouteComponent
+    CustomersnorouteComponent,
+    LoadcustomersComponent
   ],
   exports:[
     DashboardComponent,

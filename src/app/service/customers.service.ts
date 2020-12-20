@@ -16,6 +16,38 @@ export class CustomersService {
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
+
+  uploadCustomers(files:any){
+
+      const formData = new FormData();
+      formData.append('excelfile',  files);
+
+      return this.http.post(this.urlEndPoint+'/subir', formData).pipe(
+          catchError(e => {
+              return throwError(e);
+          })
+      );
+
+
+}
+
+
+updateCustomers(row:any){
+
+  let body = {
+           row
+  }
+
+  const headers = new HttpHeaders();
+
+
+  return this.http.post(this.urlEndPoint+'/updatecustomer',JSON.stringify(body), {headers}).pipe(
+    catchError(e => {
+        return throwError(e);
+    })
+  );
+}
+
   getClientesRutas(id_ruta:any){
 
       if(id_ruta != ''){

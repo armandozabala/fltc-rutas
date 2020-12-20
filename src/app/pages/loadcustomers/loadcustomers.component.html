@@ -1,0 +1,34 @@
+
+  <div class="card-header">
+    <i class="fas fa-table mr-1"></i>
+    Cargar Archivo
+</div>
+<div class="card-body">
+
+
+  <form novalidate [formGroup]="formImport">
+    <div class="input-group mb-3">
+
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" formControlName="importFile" id="importFile"  (change)="onClick($event.target.files)">
+                  <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Buscar archivo</label>
+  </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary" [disabled]="activo" type="button" (click)="import()"><i class="fas fa-file-import"></i> Cargar
+                  </button>
+</div>
+  </form>
+
+
+ <div *ngIf="informacion">
+     Nuevo Agregados: {{informacion.nuevos}} <br>
+     <span *ngIf="informacion.ordenes > 0">  Ordenes: {{informacion.ordenes}} </span> <br>
+     <span *ngIf="informacion.nuevos > 0">
+        <div *ngFor="let item of informacion.clientes">
+            <div> {{item.razon_social}}</div>
+        </div>
+     </span>
+ </div>
+
+</div>

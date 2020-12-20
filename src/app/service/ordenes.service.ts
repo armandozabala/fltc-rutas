@@ -30,6 +30,21 @@ export class OrdenesService {
   }
 
 
+  deleteOrden(id_orden:any){
+
+    const formData = new FormData();
+    formData.append('id_orden', id_orden);
+
+    return this.http.post(this.urlEndPoint+'/deleteorder', formData).pipe(
+        catchError(e => {
+            return throwError(e);
+        })
+    );
+
+  }
+
+
+
   getOrdenesExcel(row:any){
 
     let body = {

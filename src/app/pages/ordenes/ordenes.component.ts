@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { CustomersService } from 'src/app/service/customers.service';
 import { OrdenesService } from 'src/app/service/ordenes.service';
@@ -22,6 +23,9 @@ export class OrdenesComponent implements OnInit {
 
   rutas:any = [];
   checkedList:any;
+
+  @BlockUI() blockUI: NgBlockUI;
+
 
 
   constructor(private customerService: CustomersService, private ordenesService: OrdenesService) { }
@@ -59,6 +63,8 @@ export class OrdenesComponent implements OnInit {
 
   searchAll(){
 
+    this.blockUI.start('Cargando Ordenes...'); // Start blocking
+
     this.checkedList = [];
 
     if(this.ruta != ''){
@@ -68,11 +74,15 @@ export class OrdenesComponent implements OnInit {
 
         this.clientes.data = res;
 
+        this.blockUI.stop();
+
       });
 
     }else{
 
        swal.fire('Error','Seleccione una ruta','error');
+
+       this.blockUI.stop();
 
     }
 
@@ -102,8 +112,38 @@ export class OrdenesComponent implements OnInit {
     console.log(item);
   }
 
-  deleteUser(item:any){
-    console.log(item);
+  deleteOrder(item:any){
+    swal.fire({
+      title: 'Esta seguro en borrar  #'+item.id+' esta orden ?',
+      text: "Esta acción es no se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+          console.log(item.id);
+
+        this.ordenesService.deleteOrden(item.id).subscribe(res => {
+
+          console.log(res);
+
+          /*swal.fire(
+            'Borrado!',
+            'Cliente borrado satisfactoriamente.',
+            'success'
+          );*/
+
+          this.searchAll();
+
+        });
+
+
+
+      }
+    })
   }
 
 

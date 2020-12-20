@@ -1,3 +1,5 @@
+import { CustomersComponent } from './customers/customers.component';
+import { LoadcustomersComponent } from './loadcustomers/loadcustomers.component';
 import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
 import { OrdenesComponent } from './ordenes/ordenes.component';
 import { AuthGuard } from './../guards/auth.guard';
@@ -17,8 +19,9 @@ const routes: Routes = [
     children:[
       { path: '', component: DashboardComponent },
       { path: 'graficas', component: GraficasComponent},
-      { path: 'users', component: UsersComponent},
+      { path: 'customers', component: CustomersComponent},
       { path: 'ordenes', component: OrdenesComponent},
+      { path: 'loadfile', component: LoadcustomersComponent},
       { path: 'customersnoroutes', component: CustomersnorouteComponent},
     ]
   }

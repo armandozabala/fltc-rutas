@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
       }, err =>{
 
           if(err.status == 401){
+            this.blockUI.stop();
             swal.fire('Error','Error usuario o clave incorrectas!','error');
           }
 

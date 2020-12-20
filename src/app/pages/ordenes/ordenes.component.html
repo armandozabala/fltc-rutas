@@ -87,7 +87,7 @@
                     <td><input type="text"style="width: 30px; font-size: 15px" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 15px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
                     <td style="font-weight: 400; font-size: 15px;"> {{item.fecha_creacion |  date: 'dd/MM/yyyy HH:mm'}} </td>
                     <td>
-                      <button class="btn-sm btn-danger ml-1" (click)="deleteUser(item)"> Borrar </button>
+                      <button class="btn-sm btn-danger ml-1" (click)="deleteOrder(item)"> Borrar </button>
                     </td>
                 </tr>
 
