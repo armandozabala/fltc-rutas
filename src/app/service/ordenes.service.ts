@@ -45,6 +45,23 @@ export class OrdenesService {
 
 
 
+  deleteAllOrden(row:any){
+
+    let body = {
+      row
+    }
+
+
+    return this.http.post(this.urlEndPoint+'/deleteallorden',JSON.stringify(body)).pipe(
+      catchError(e => {
+          return throwError(e);
+      })
+    );
+
+  }
+
+
+
   getOrdenesExcel(row:any){
 
     let body = {

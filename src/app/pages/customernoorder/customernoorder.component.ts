@@ -4,12 +4,14 @@ import { OrdenesService } from 'src/app/service/ordenes.service';
 import swal from 'sweetalert2';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
+
 @Component({
-  selector: 'app-customersnoroute',
-  templateUrl: './customersnoroute.component.html',
-  styleUrls: ['./customersnoroute.component.css']
+  selector: 'app-customernoorder',
+  templateUrl: './customernoorder.component.html',
+  styleUrls: ['./customernoorder.component.css']
 })
-export class CustomersnorouteComponent implements OnInit {
+export class CustomernoorderComponent implements OnInit {
+
 
   p: number = 1;
   config:any;
@@ -24,6 +26,7 @@ export class CustomersnorouteComponent implements OnInit {
   rutas:any = [];
 
   @BlockUI() blockUI: NgBlockUI;
+
 
   constructor(private customerService: CustomersService, private ordenesService: OrdenesService) { }
 
@@ -56,27 +59,43 @@ export class CustomersnorouteComponent implements OnInit {
 
     })
 
-    this.searchAll();
+    //this.searchAll();
 
 
   }
 
   searchAll(){
 
+    if(this.ruta != ''){
+
     this.blockUI.start('Cargando clientes...'); // Start blocking
 
 
-      this.customerService.getOrdenesNoRuta().subscribe(res => {
+
+      this.customerService.getOrdenesNoOrden(this.ruta).subscribe(res => {
 
 
         this.clientes.data = res;
 
 
+        if(this.clientes.data.length == 0){
+          swal.fire('Información','No hay clientes','warning');
+        }
+
         this.blockUI.stop(); // Start blocking
+
+
+
 
       });
 
+    }else{
 
+      swal.fire('Error','Seleccione una ruta','error');
+
+      this.blockUI.stop(); // Start blocking
+
+    }
 
 
   }
@@ -141,5 +160,5 @@ export class CustomersnorouteComponent implements OnInit {
         this.ngOnInit();
     })
  }
-}
 
+}

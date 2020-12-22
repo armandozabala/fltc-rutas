@@ -1,11 +1,20 @@
 
   <div class="card-header">
     <i class="fas fa-table mr-1"></i>
-    Clientes Nuevos - Sin Rutas
+    Clientes Nuevos - Sin Orden
 </div>
 <div class="card-body">
   <div class="row">
 
+    <div class="mt-1 mb-1 ml-2" style="width: 250px;">
+      <!-- <input class="form-control" placeholder="Ruta" name="ruta" type="text" [(ngModel)]="ruta"/> --->
+      <select class="form-control" [(ngModel)]="ruta">
+          <option value="">Seleccione Ruta</option>
+          <option value="0">Todas Las Rutas</option>
+          <option *ngFor="let rut of rutas" [value]="rut.id_ruta">{{rut.ruta}}</option>
+      </select>
+
+    </div>
 
     <div class="button_search">
 
@@ -39,7 +48,7 @@
                     <tr>
 
                     <th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
-                    <th>Id &nbsp; <i class="fa fa-sort"></i> </th>
+                    <th (click)="sort('firstname')">Id &nbsp; <i class="fa fa-sort"></i> </th>
                     <th (click)="sort('firstname')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
                     <th (click)="sort('firstname')">Establecimiento &nbsp; <i class="fa fa-sort"></i> </th>
                     <th (click)="sort('email')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
@@ -68,7 +77,7 @@
                       <option *ngFor="let rut of rutas" [value]="rut.id_ruta">{{rut.ruta}}</option>
                       </select>
                     </td>
-                    <td  ><input type="text" class="form-control" style="width: 50px; font-size: 15px; display: inline;" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 15px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
+                    <td  ><input type="text" class="form-control" style="width: 50px; font-size: 15px; display: inline;" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 10px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
 
                 </tr>
 

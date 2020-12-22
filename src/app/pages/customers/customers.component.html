@@ -87,7 +87,7 @@
                       <option *ngFor="let rut of rutas" [value]="rut.id_ruta">{{rut.ruta}}</option>
                       </select>
                     </td>
-                    <td  ><input type="text"style="width: 30px; font-size: 15px" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 15px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
+                    <td  ><input type="text" class="form-control" style="width: 55px; font-size: 15px; display: inline;" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 10px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
                     <td> <button class="btn btn-primary" (click)="editUser(item)"> Editar </button>
                       <button class="btn btn-danger ml-1" (click)="deleteUser(item)"> Borrar </button>
                     </td>

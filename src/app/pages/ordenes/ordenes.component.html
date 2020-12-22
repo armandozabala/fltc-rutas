@@ -39,6 +39,13 @@
 
     </div>
 
+    <div class="button_search">
+
+      <button class="btn btn-danger" (click)="deleteAllSelected()"> Borrar Orden</button>
+
+
+    </div>
+
     <!-- <div>
       <input class="form-control" placeholder="Filter" name="nombres" type="text" [(ngModel)]="nombres"/>
     </div> -->
@@ -57,12 +64,12 @@
                     <tr>
 
                     <th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
-                    <th (click)="sort('firstname')">Id &nbsp; <i class="fa fa-sort"></i> </th>
-                    <th (click)="sort('firstname')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
-                    <th (click)="sort('firstname')">Establecimiento &nbsp; <i class="fa fa-sort"></i> </th>
-                    <th (click)="sort('email')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
+                    <th>Id &nbsp; <i class="fa fa-sort"></i> </th>
+                    <th (click)="sort('razon_social')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
+                    <th (click)="sort('establecimiento')">Establecimiento &nbsp; <i class="fa fa-sort"></i> </th>
+                    <th (click)="sort('direccion')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
                     <th (click)="sort('ruta')">Ruta &nbsp; <i class="fa fa-sort"></i></th>
-                    <th (click)="sort('orden')">Orden &nbsp;</th>
+                    <th >Orden &nbsp;</th>
                     <th (click)="sort('fecha_creacion')">Fecha &nbsp; <i class="fa fa-sort"></i></th>
 
                     <th>Opcion</th>
@@ -71,7 +78,7 @@
 
             <tbody>
 
-                <tr *ngFor="let item of clientes.data | orderBy: key : reverse  | paginate: config |filter: nombres let i=index">
+                <tr *ngFor="let item of clientes.data  | paginate: config |filter: nombres let i=index">
 
                      <td><input type="checkbox" (change)="checkValue()" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
                      <td>{{item.id_cliente}}</td>
@@ -84,7 +91,7 @@
 
 
                       </td>
-                    <td><input type="text"style="width: 30px; font-size: 15px" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 15px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
+                    <td><input type="text" class="form-control" style="width: 50px; font-size: 15px; display: inline;" value="{{item.orden}}"  [(ngModel)]="item.orden"> <span (click)="saveOrden(item)"> <i style="margin-left: 10px; font-size: 17px;" class="fa fa-save" ></i> </span> </td>
                     <td style="font-weight: 400; font-size: 15px;"> {{item.fecha_creacion |  date: 'dd/MM/yyyy HH:mm'}} </td>
                     <td>
                       <button class="btn-sm btn-danger ml-1" (click)="deleteOrder(item)"> Borrar </button>

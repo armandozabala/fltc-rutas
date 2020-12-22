@@ -69,6 +69,11 @@ export class CustomersComponent implements OnInit {
 
         this.clientes.data = res;
 
+        if(this.clientes.data.length == 0){
+          swal.fire('Información','No hay clientes','warning');
+        }
+
+
         this.blockUI.stop(); // Start blocking
       });
 
@@ -185,6 +190,7 @@ export class CustomersComponent implements OnInit {
 
 showAllSelected(){
 
+  this.blockUI.start('Reordenando clientes...'); // Start blocking
 
 
   if(this.isAllCheckBoxChecked()){
@@ -197,6 +203,8 @@ showAllSelected(){
           this.customerService.updateCustomers(this.clientes.data).subscribe(res => {
 
               console.log(res);
+
+              this.blockUI.stop();
 
               this.searchAll();
           });
@@ -213,6 +221,8 @@ showAllSelected(){
             this.customerService.updateCustomers(this.checkedList).subscribe(res => {
 
               console.log(res);
+
+              this.blockUI.stop();
 
               this.searchAll();
 

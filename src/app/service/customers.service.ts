@@ -38,10 +38,8 @@ updateCustomers(row:any){
            row
   }
 
-  const headers = new HttpHeaders();
 
-
-  return this.http.post(this.urlEndPoint+'/updatecustomer',JSON.stringify(body), {headers}).pipe(
+  return this.http.post(this.urlEndPoint+'/updatecustomers',JSON.stringify(body)).pipe(
     catchError(e => {
         return throwError(e);
     })
@@ -92,9 +90,25 @@ updateCustomers(row:any){
   }
 
 
-  getOrdenesSinRutas(){
+  getOrdenesNoOrden(id_ruta:any){
 
-    return this.http.post(this.urlEndPoint+'/customersnoroutes','').pipe(
+
+    const formData = new FormData();
+    formData.append('id_ruta',  id_ruta);
+
+    return this.http.post(this.urlEndPoint+'/customersnoorden',formData).pipe(
+        catchError(e => {
+            return throwError(e);
+        })
+    );
+
+  }
+
+
+  getOrdenesNoRuta(){
+
+
+    return this.http.post(this.urlEndPoint+'/customersnoroute','').pipe(
         catchError(e => {
             return throwError(e);
         })

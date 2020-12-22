@@ -1,3 +1,4 @@
+import { CustomernoorderComponent } from './customernoorder/customernoorder.component';
 import { CustomersComponent } from './customers/customers.component';
 import { LoadcustomersComponent } from './loadcustomers/loadcustomers.component';
 import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'ordenes', component: OrdenesComponent},
       { path: 'loadfile', component: LoadcustomersComponent},
       { path: 'customersnoroutes', component: CustomersnorouteComponent},
+      { path: 'customersnoorders', component: CustomernoorderComponent},
     ]
   }
 ];

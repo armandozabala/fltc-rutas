@@ -74,6 +74,10 @@ export class OrdenesComponent implements OnInit {
 
         this.clientes.data = res;
 
+        if(this.clientes.data.length == 0){
+          swal.fire('Información','No hay ordenes','warning');
+        }
+
         this.blockUI.stop();
 
       });
@@ -171,25 +175,35 @@ export class OrdenesComponent implements OnInit {
   showAllSelected(){
 
 
+    this.blockUI.start('Generando Ordenes...'); // Start blocking
 
         if(this.isAllCheckBoxChecked()){
 
+
               if(this.clientes.data.length == 0){
                 swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+                this.blockUI.stop(); // Start blocking
               }else{
                 console.log(this.clientes.data);
 
                 this.ordenesService.getOrdenesExcel(this.clientes.data);
+
+                this.blockUI.stop(); // Start blocking
               }
 
 
         }else{
+
+
             if(this.checkedList == undefined || this.checkedList.length == 0 ){
               swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+              this.blockUI.stop(); // Start blocking
             }else{
               console.log(this.checkedList);
 
               this.ordenesService.getOrdenesExcel(this.checkedList);
+
+              this.blockUI.stop(); // Start blocking
 
             }
 
@@ -197,12 +211,59 @@ export class OrdenesComponent implements OnInit {
 
   }
 
+
+  deleteAllSelected(){
+
+
+    this.blockUI.start('Borrando Ordenes...'); // Start blocking
+
+    if(this.isAllCheckBoxChecked()){
+
+          if(this.clientes.data.length == 0){
+            swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+            this.blockUI.stop(); // Start blocking
+          }else{
+            console.log(this.clientes.data);
+
+            this.ordenesService.deleteAllOrden(this.clientes.data).subscribe(res =>{
+
+                console.log(res);
+
+                this.searchAll();
+
+                this.blockUI.stop(); // Start blocking
+
+            });
+          }
+
+
+    }else{
+        if(this.checkedList == undefined || this.checkedList.length == 0 ){
+          swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+          this.blockUI.stop(); // Start blocking
+        }else{
+          console.log(this.checkedList);
+
+          this.ordenesService.deleteAllOrden(this.checkedList).subscribe(res => {
+              console.log(res);
+
+              this.searchAll();
+
+              this.blockUI.stop(); // Start blocking
+          });
+
+        }
+
+    }
+
+}
+
   saveOrden(item){
 
 
      this.customerService.updateOrder(item).subscribe(res => {
          console.log(res);
-         swal.fire('Update','Orden actualizada','info');
+         //swal.fire('Update','Orden actualizada','info');
          this.searchAll();
      })
   }
