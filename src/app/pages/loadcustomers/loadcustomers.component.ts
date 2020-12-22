@@ -15,14 +15,23 @@ export class LoadcustomersComponent implements OnInit {
   @ViewChild('labelImport')
   labelImport: ElementRef;
 
-  activo = true;
+  p: number = 1;
+  config:any;
+  clientes:any = { count: 0, data:[] };
 
+  nombres:any = '';
+
+  activo = true;
+  rutas:any = [];
   formImport: FormGroup;
   fileToUpload: File = null;
 
   fileUpload: ElementRef;files = [];
 
   @BlockUI() blockUI: NgBlockUI;
+
+  key: string = 'id';
+  reverse: boolean = false;
 
   informacion:any;
 
@@ -32,10 +41,42 @@ export class LoadcustomersComponent implements OnInit {
     });
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+      totalItems: this.clientes.count
+    }
+
+
+    this.customerService.getRutas().subscribe(res => {
+
+        this.rutas = res;
+
+    })
+  }
 
 
 
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
+
+  sort(key){
+
+    this.key = key;
+    this.reverse = ! this.reverse;
+  }
+
+  onOptionsSelected(item){
+
+    this.customerService.updateRuta(item).subscribe(res => {
+      console.log(res);
+      swal.fire('Update','Orden actualizada','info');
+
+    })
+
+}
 
   import(): void {
 

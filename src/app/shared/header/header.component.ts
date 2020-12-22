@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,12 @@ export class HeaderComponent implements OnInit {
   constructor(public authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
+
+        // Toggle the side navigation
+        $("#sidebarToggle").on("click", function(e) {
+          e.preventDefault();
+          $("body").toggleClass("sb-sidenav-toggled");
+      });
   }
 
   logout(){

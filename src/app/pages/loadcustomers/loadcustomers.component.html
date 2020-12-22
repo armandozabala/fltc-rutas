@@ -25,9 +25,60 @@
      Nuevo Agregados: {{informacion.nuevos}} <br>
      <span *ngIf="informacion.ordenes > 0">  Ordenes: {{informacion.ordenes}} </span> <br>
      <span *ngIf="informacion.nuevos > 0">
-        <div *ngFor="let item of informacion.clientes">
-            <div> {{item.razon_social}}</div>
-        </div>
+
+      <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Clientes Agregados
+    </div>
+        <div class="table-responsive" style="margin-top: 15px;">
+
+
+
+          <table class="table table-bordered table-sm" style="font-size: 12px;"  width="100%" cellspacing="0">
+              <thead>
+                      <tr>
+
+
+                      <th (click)="sort('id_cliente')">Id &nbsp; <i class="fa fa-sort"></i> </th>
+                      <th (click)="sort('razon_social')">Razon Social &nbsp; <i class="fa fa-sort"></i> </th>
+                      <th (click)="sort('establecimiento')">Establecimiento &nbsp; <i class="fa fa-sort"></i> </th>
+
+                      <th (click)="sort('direccion')">Direccion &nbsp; <i class="fa fa-sort"></i></th>
+
+                      <th (click)="sort('ruta')">Ruta &nbsp; <i class="fa fa-sort"></i></th>
+
+                  </tr>
+              </thead>
+
+              <tbody>
+
+                  <tr *ngFor="let item of informacion.clientes | orderBy: key : reverse  | paginate: config |filter: nombres let i=index">
+
+
+                       <td>{{item.id_cliente}}</td>
+                       <td>{{item.razon_social}}</td>
+                       <td>{{item.establecimiento}}</td>
+                      <td>{{item.direccion}}</td>
+
+                      <td>
+                        <select  class="form-control" [(ngModel)]="item.id_ruta"
+                        #mySelect
+                        (change)='onOptionsSelected(item)'>
+                        <option value="">NO RUTA</option>
+                        <option value="0">NO RUTA</option>
+                        <option *ngFor="let rut of rutas" [value]="rut.id_ruta">{{rut.ruta}}</option>
+                        </select>
+                      </td>
+
+                  </tr>
+
+              </tbody>
+          </table>
+          <div style="text-align: center;">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+
+      </div>
      </span>
  </div>
 

@@ -93,6 +93,7 @@ updateCustomers(row:any){
   getOrdenesNoOrden(id_ruta:any){
 
 
+    if(id_ruta != ''){
     const formData = new FormData();
     formData.append('id_ruta',  id_ruta);
 
@@ -101,7 +102,7 @@ updateCustomers(row:any){
             return throwError(e);
         })
     );
-
+    }
   }
 
 

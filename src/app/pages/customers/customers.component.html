@@ -72,7 +72,7 @@
 
                 <tr *ngFor="let item of clientes.data | orderBy: key : reverse  | paginate: config |filter: nombres let i=index">
 
-                     <td><input type="checkbox" (change)="checkValue(item)" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
+                     <td><input type="checkbox" (change)="checkValue()" value="{{item.id}}" [(ngModel)]="clientes.data[i].checked"></td>
                      <td>{{item.id_cliente}}</td>
                      <td>{{item.razon_social}}</td>
                      <td>{{item.establecimiento}}</td>
