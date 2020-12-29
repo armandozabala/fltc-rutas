@@ -3,6 +3,7 @@ import { CustomersService } from 'src/app/service/customers.service';
 import { OrdenesService } from 'src/app/service/ordenes.service';
 import swal from 'sweetalert2';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Toaster } from 'ngx-toast-notifications';
 
 @Component({
   selector: 'app-customersnoroute',
@@ -25,7 +26,7 @@ export class CustomersnorouteComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private customerService: CustomersService, private ordenesService: OrdenesService) { }
+  constructor(private customerService: CustomersService, private ordenesService: OrdenesService, private toaster: Toaster) { }
 
 
 
@@ -126,8 +127,10 @@ export class CustomersnorouteComponent implements OnInit {
 
       this.customerService.updateRuta(item).subscribe(res => {
         console.log(res);
-        swal.fire('Update','Orden actualizada','info');
-        this.ngOnInit();
+        //swal.fire('Update','Orden actualizada','info');
+        this.toaster.open({text: 'Actualizando cliente', caption: 'Info', position:  'top-right' , duration: 1500, type: 'primary'});
+        this.searchAll();
+
       })
 
   }
@@ -137,7 +140,8 @@ export class CustomersnorouteComponent implements OnInit {
 
     this.customerService.updateOrder(item).subscribe(res => {
         console.log(res);
-        swal.fire('Update','Orden actualizada','info');
+        //swal.fire('Update','Orden actualizada','info');
+        this.toaster.open({text: 'Orden Actualizada', caption: 'Info', position:  'top-right' , duration: 1500, type: 'primary'});
         this.ngOnInit();
     })
  }

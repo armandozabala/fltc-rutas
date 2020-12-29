@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomersService } from 'src/app/service/customers.service';
 import swal from 'sweetalert2';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Toaster } from 'ngx-toast-notifications';
 
 @Component({
   selector: 'app-customers',
@@ -21,12 +22,13 @@ export class CustomersComponent implements OnInit {
   ruta = "";
 
   rutas:any = [];
+  total=0;
 
   @BlockUI() blockUI: NgBlockUI;
 
   checkedList:any;
 
-  constructor(private customerService: CustomersService) { }
+  constructor(private customerService: CustomersService, private toaster: Toaster) { }
 
 
 
@@ -65,9 +67,11 @@ export class CustomersComponent implements OnInit {
 
     if(this.ruta != ''){
 
-      this.customerService.getClientesRutas(this.ruta).subscribe(res => {
+      this.customerService.getClientesRutas(this.ruta).subscribe((res:any) => {
+
 
         this.clientes.data = res;
+        this.total = res.length;
 
         if(this.clientes.data.length == 0){
           swal.fire('Información','No hay clientes','warning');
@@ -171,7 +175,14 @@ export class CustomersComponent implements OnInit {
      this.customerService.updateOrder(item).subscribe(res => {
          console.log(res);
          //swal.fire('Update','Ruta actualizada','info');
-         this.searchAll();
+
+
+         this.toaster.open({text: 'Ruta actualizada', caption: 'Info', position:  'top-right' , duration: 2000, type: 'success'});
+
+         setTimeout(() => {
+          this.searchAll();
+         },500);
+
      })
   }
 
@@ -179,8 +190,11 @@ export class CustomersComponent implements OnInit {
 
     this.customerService.updateRuta(item).subscribe(res => {
       console.log(res);
-      swal.fire('Update','Orden actualizada','info');
-      this.searchAll();
+      //swal.fire('Update','Orden actualizada','info');
+      this.toaster.open({text: 'Actualizando cliente', caption: 'Info', position:  'top-right' , duration: 1500, type: 'primary'});
+
+        this.searchAll();
+
     })
 
 }
@@ -197,6 +211,7 @@ showAllSelected(){
 
         if(this.clientes.data.length == 0){
           swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+          this.blockUI.stop();
         }else{
           console.log(this.clientes.data);
 
@@ -206,7 +221,13 @@ showAllSelected(){
 
               this.blockUI.stop();
 
-              this.searchAll();
+              this.toaster.open({text: 'Orden actualizada', caption: 'Info', position:  'top-right' , duration: 2000, type: 'success'});
+
+              setTimeout(() => {
+                  this.searchAll();
+              },500);
+
+
           });
 
         }
@@ -215,6 +236,7 @@ showAllSelected(){
   }else{
       if(this.checkedList == undefined || this.checkedList.length == 0 ){
         swal.fire('Error','Debe seleccionar por lo menos una orden','error');
+        this.blockUI.stop();
       }else{
         console.log(this.checkedList);
 
@@ -224,7 +246,11 @@ showAllSelected(){
 
               this.blockUI.stop();
 
-              this.searchAll();
+              this.toaster.open({text: 'Orden actualizada', caption: 'Info', position:  'top-right' , duration: 2000, type: 'success'});
+
+              setTimeout(() => {
+                  this.searchAll();
+              },500);
 
           });
 

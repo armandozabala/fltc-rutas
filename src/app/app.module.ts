@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BlockUIModule } from 'ng-block-ui';
+import { ToastNotificationsModule } from 'ngx-toast-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { BlockUIModule } from 'ng-block-ui';
   imports: [
     BlockUIModule.forRoot(),
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastNotificationsModule,
     AppRoutingModule,
     PagesModule,
     HttpClientModule,

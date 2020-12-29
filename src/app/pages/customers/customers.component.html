@@ -5,7 +5,7 @@
 </div>
 <div class="card-body">
   <div class="row">
-    <div class="mt-1 mb-1 ml-2" style="width: 250px;">
+    <div class="button_search" style="width: 300px;">
       <!-- <input class="form-control" placeholder="Ruta" name="ruta" type="text" [(ngModel)]="ruta"/> --->
       <select class="form-control" [(ngModel)]="ruta">
           <option value="">Seleccione Ruta</option>
@@ -17,14 +17,14 @@
 
     <div class="button_search">
 
-      <button class="btn btn-success" (click)="searchAll()"> Buscar </button>
+      <button class="btn btn-primary" style="width: 150px;" (click)="searchAll()"> Buscar </button>
 
 
     </div>
 
     <div class="button_search">
 
-      <button class="btn btn-primary" (click)="showAllSelected()"> Regenerar </button>
+      <button class="btn btn-success"  style="width: 150px;" (click)="showAllSelected()"> Asignar Orden </button>
 
 
     </div>
@@ -36,9 +36,18 @@
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
+        <option value="30">30</option>
         <option value="50">50</option>
     </select>
     </div>
+
+
+
+    <div class="button_search">
+      <div style="font-size: 22px; padding-top: 2px;" class="columend">  Total:  <b> {{total}} </b> </div>
+    </div>
+
+
 
     <!-- <div>
       <input class="form-control" placeholder="Filter" name="nombres" type="text" [(ngModel)]="nombres"/>

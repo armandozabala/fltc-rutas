@@ -1,0 +1,24 @@
+.grid{
+
+    display: grid;
+
+    grid-auto-flow: column;
+    grid-column: 1 / span 2;
+}
+
+.columnita-1{
+  grid-column: 1/1;
+}
+
+.columnita{
+  grid-gap: 1px 1px;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.final{
+
+  text-align: right;
+ justify-content: end;
+}

@@ -146,7 +146,8 @@ export class CustomernoorderComponent implements OnInit {
       this.customerService.updateRuta(item).subscribe(res => {
         console.log(res);
         swal.fire('Update','Orden actualizada','info');
-        this.ngOnInit();
+        //this.ngOnInit();
+        this.searchAll();
       })
 
   }
