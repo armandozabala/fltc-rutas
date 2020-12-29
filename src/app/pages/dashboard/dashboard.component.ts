@@ -8,15 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  totalCustomer = 0 ;
+  totalNoRoute = 0;
+
   constructor(private customerService: CustomersService) { }
 
   ngOnInit(): void {
 
-     /* this.customerService.getUsers().subscribe(res => {
+     this.customerService.getTotalCustomer().subscribe( (res:any) => {
 
-          console.log(res);
 
-      });*/
+          this.totalCustomer = res.total;
+
+      });
+
+      this.customerService.getOrdenesNoRuta().subscribe( (res:any) => {
+
+
+        this.totalNoRoute = res.length;
+
+      });
 
   }
 

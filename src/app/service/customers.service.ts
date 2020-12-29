@@ -90,6 +90,13 @@ updateCustomers(row:any){
   }
 
 
+  getTotalCustomer(){
+
+    return this.http.get(this.urlEndPoint+'/totalcustomer');
+
+  }
+
+
   getOrdenesNoOrden(id_ruta:any){
 
 
