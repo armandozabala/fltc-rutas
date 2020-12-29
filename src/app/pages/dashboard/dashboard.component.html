@@ -9,11 +9,11 @@
         <div class="card bg-primary text-white mb-4">
             <div class="card-body letras" style="text-align: center; ">
                Clientes Registrados
-               <h1 class="mt-2" style="font-size: 50px;"> {{totalCustomer}} </h1>
+               <h1 class="mt-2" style="font-size: 70px;"> {{totalCustomer}} </h1>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" routerLink="/dashboard/customers">Ver mas</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <a class="text-white stretched-link" routerLink="/dashboard/customers">Ver detalle</a>
+                <div class="text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
@@ -21,39 +21,39 @@
         <div class="card bg-danger text-white mb-4">
             <div class="card-body letras" style="text-align: center; ">
               Clientes Sin Rutas
-              <h1 class="mt-2" style="font-size: 50px;"> {{totalNoRoute}} </h1>
+              <h1 class="mt-2" style="font-size: 70px;"> {{totalNoRoute}} </h1>
           </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" routerLink="/dashboard/customersnoroutes">Ver mas</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <a class=" text-white stretched-link" routerLink="/dashboard/customersnoroutes">Ver detalle</a>
+                <div class="text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
   </div>
- <!--  <div class="row">
+   <div class="row">
     <div class="col-md-2">
 
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+          <div class="card-body letras" style="text-align: center; ">
+            Clientes Sin Orden
+            <h1 class="mt-2" style="font-size: 70px;"> {{totalNoOrden}} </h1>
+        </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" routerLink="/dashboard/customersnoorders">Ver detalle</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
     </div>
     <div class="col-xl-4 col-md-6">
         <div class="card bg-success text-white mb-4">
-          <div class="card-body letras" style="text-align: center; ">
-            Clientes Sin Rutas
-            <h1 class="mt-2" style="font-size: 50px;">2</h1>
-        </div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-md-6">
-        <div class="card bg-danger text-white mb-4">
           <div class="card-body letras" style="text-align: center;">
-            Clientes Sin Rutas
-            <h1 class="mt-2" style="font-size: 50px;">2</h1>
+            Ordenes
+            <h1 class="mt-2" style="font-size: 70px;"> {{ ordenes }} </h1>
         </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" routerLink="/dashboard/ordenes">Ver detalle</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -61,5 +61,5 @@
     <div class="col-md-2">
 
     </div>
-  </div>-->
+  </div>
 </div>

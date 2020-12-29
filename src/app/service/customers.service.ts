@@ -100,7 +100,7 @@ updateCustomers(row:any){
   getOrdenesNoOrden(id_ruta:any){
 
 
-    if(id_ruta != ''){
+    if(id_ruta != '' || id_ruta == 0){
     const formData = new FormData();
     formData.append('id_ruta',  id_ruta);
 
