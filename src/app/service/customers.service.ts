@@ -22,14 +22,27 @@ export class CustomersService {
       const formData = new FormData();
       formData.append('excelfile',  files);
 
+      return this.http.post(this.urlEndPoint+'/cargarcliente', formData).pipe(
+          catchError(e => {
+              return throwError(e);
+          })
+      );
+
+  }
+
+
+  uploadOrder(files:any){
+
+      const formData = new FormData();
+      formData.append('excelfile',  files);
+
       return this.http.post(this.urlEndPoint+'/subir', formData).pipe(
           catchError(e => {
               return throwError(e);
           })
       );
 
-
-}
+  }
 
 
 updateCustomers(row:any){

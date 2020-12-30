@@ -17,6 +17,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import { CustomersnorouteComponent } from './customersnoroute/customersnoroute.component';
 import { LoadcustomersComponent } from './loadcustomers/loadcustomers.component';
 import { CustomernoorderComponent } from './customernoorder/customernoorder.component';
+import { LoadordersComponent } from './loadorders/loadorders.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CustomernoorderComponent } from './customernoorder/customernoorder.comp
     OrdenesComponent,
     CustomersnorouteComponent,
     LoadcustomersComponent,
-    CustomernoorderComponent
+    CustomernoorderComponent,
+    LoadordersComponent
   ],
   exports:[
     DashboardComponent,
