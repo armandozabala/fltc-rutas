@@ -12,7 +12,7 @@ import { throwError } from 'rxjs';
 })
 export class AuthService {
 
-  private urlEndPoint = 'http://localhost:80/apirest';
+  private urlEndPoint = 'https://fltadmin.com/apirest';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type' : 'application/json'});
 
