@@ -88,6 +88,12 @@ export class LoadcustomersComponent implements OnInit {
        console.log(res);
        this.blockUI.stop();
 
+        this.customerService.getRutas().subscribe(res => {
+
+          this.rutas = res;
+
+        });
+
         this.informacion = res;
     });
 
